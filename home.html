@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>URL Shortener</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+        <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+    </head>
+    <body>
+        <div>
+            <h1 class="header">URL Shortener Microservice</h1>
+            <h3>Example creation usage:</h3>
+            <code>https://hrly.herokuapp.com/new/https://www.google.com</code>
+            <br/>
+            <code>https://hrly.herokuapp.com/new/http://foo.com:80</code>
+            <h3>Example creation output</h3>
+            <code>
+                {
+                  "original_url":"http://foo.com:80",
+                  "short_url":"https://hrly.herokuapp.com/8170"
+                }
+            </code>
+            <h3>Usage:</h3>
+            <code>https://hrly.herokuapp.com/1</code>
+            <h3>Will redirect to:</h3>
+            <code>https://www.google.com/</code>
+        </div>
+    </body>
+</html>
