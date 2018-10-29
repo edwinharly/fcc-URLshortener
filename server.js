@@ -54,7 +54,7 @@ app.get('/new/*', (req, res) => {
 });
 
 app.get('/:URLid', (req, res) => {
-	let URLid = Number(req.params.URLid);
+	let URLid = req.params.URLid;
 	MongoClient.connect(dbUrl, (err, db) => {
 		assert.equal(null, err);
 		// console.log('Mongo is connected');
