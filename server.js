@@ -18,16 +18,16 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.use((req, res, next) => {
-	if (req.secure) {
-		next();
-	} else {
-		res.redirect('https://' + req.headers.host + req.url);
-	}
-});
+// app.use((req, res, next) => {
+// 	if (req.secure) {
+// 		next();
+// 	} else {
+// 		res.redirect('https://' + req.headers.host + req.url);
+// 	}
+// });
 
 app.get('/', (req, res) => {
-	 res.sendFile(__dirname + '/home.html');
+	res.sendFile(__dirname + '/home.html');
 });
 
 app.get('/new/*', (req, res) => {
