@@ -12,11 +12,19 @@ const dbUrl = process.env.DB_URI;
 const ID = () => Math.random().toString(36).substr(2, 9);
 
 const corsOptions = {
-	origin: 'http://hrly.herokuapp.com',
+	origin: 'https://hrly.herokuapp.com',
 	optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
+
+app.use((req, res, next) => {
+	if (req.secure) {
+		next();
+	} else {
+		res.redirect('https://' + req.headers.host + req.url);
+	}
+});
 
 app.get('/', (req, res) => {
 	 res.sendFile(__dirname + '/home.html');
