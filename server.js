@@ -2,10 +2,12 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const http = require('http');
 const validUrl = require('valid-url');
 const cors = require('cors');
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
+const enforce = require('express-sslify');
 
 const dbUrl = process.env.DB_URI;
 
@@ -17,6 +19,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
+app.use(enforce.HTTPS());
 
 // app.use((req, res, next) => {
 // 	if (req.secure) {
@@ -79,6 +83,8 @@ app.get('/:URLid', (req, res) => {
 	});
 });
 
-app.listen(process.env.PORT || 8080, () => {
-	console.log('Server is running on port 8080');
+const port = process.env.PORT || 8080;
+
+http.createServer(app).listen(port, () => {
+	console.log('Server is running on port ' + port.toString());
 });
