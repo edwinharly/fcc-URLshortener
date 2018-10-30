@@ -22,14 +22,6 @@ app.use(cors(corsOptions));
 
 app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
-// app.use((req, res, next) => {
-// 	if (req.secure) {
-// 		next();
-// 	} else {
-// 		res.redirect('https://' + req.headers.host + req.url);
-// 	}
-// });
-
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/home.html');
 });
