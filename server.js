@@ -10,8 +10,11 @@ const assert = require('assert');
 const enforce = require('express-sslify');
 
 const dbUrl = process.env.DB_URI;
+const userRoutes = require('./routes/user');
 
 const ID = () => Math.random().toString(36).substr(2, 9);
+
+const isProduction = process.env.PRODUCTION;
 
 const corsOptions = {
 	origin: 'https://hrly.herokuapp.com',
@@ -20,11 +23,15 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.use(enforce.HTTPS({ trustProtoHeader: true }));
+if (isProduction) {
+	app.use(enforce.HTTPS({ trustProtoHeader: true }));
+}
 
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/home.html');
 });
+
+app.use('/user', userRoutes);
 
 app.get('/new/*', (req, res) => {
 	let oriUrl = req.params[0];
